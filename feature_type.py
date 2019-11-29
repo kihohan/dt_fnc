@@ -1,9 +1,12 @@
-def feature_type(data):
+def feature_type(data,standard):
     binominal = []
     continuous = []
     for i in data.columns:
         if data[i].dtype == 'object':
             binominal.append(i)
+        elif:
+            data[i].nunique() < standard:
+                 binominal.append(i)
         else:
             continuous.append(i)
     print ('binominal_data:', len(binominal), '개')
