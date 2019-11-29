@@ -8,3 +8,6 @@ def time_transform(data, column_name):
     data['minute'] = data[column_name].dt.minute
     data['second'] = data[column_name].dt.second
     data = data.drop(column_name,1)
+    return data
+##########################33
+df = time_transform(df, 'date')
