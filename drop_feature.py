@@ -4,3 +4,7 @@ def drop_feature(data, column_name, drop_rate = 0.6):
     if percent >= drop_rate:
         del df[column_name]
         print ('---------->DELETE: {0}'.format(column_name))
+#####################################################3
+for i in df:
+    drop_feature(df, i, drop_rate = 0.6)
+print (df.shape)
