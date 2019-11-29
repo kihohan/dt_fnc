@@ -7,3 +7,4 @@ def time_transform(data, column_name):
     data['hour'] = data[column_name].dt.hour
     data['minute'] = data[column_name].dt.minute
     data['second'] = data[column_name].dt.second
+    data = data.drop(column_name,1)
