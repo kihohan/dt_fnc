@@ -1,5 +1,6 @@
 def time_transform(data, column_name):
     data[column_name]  = pd.to_datetime(data[column_name])
+    data['quarter'] = data[column_name].dt.quarter 
     data['year'] = data[column_name].dt.year 
     data['month'] = data[column_name].dt.month
     data['dates'] = data[column_name].dt.day
