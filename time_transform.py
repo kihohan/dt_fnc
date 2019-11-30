@@ -11,3 +11,4 @@ def time_transform(data, column_name):
     return data
 ##########################
 df = time_transform(df, 'date')
+df = df.drop('date',1)
