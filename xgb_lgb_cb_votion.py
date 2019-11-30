@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import xgboost as xgb
 from xgboost import plot_importance
 import lightgbm as lgb
+import catboost as cb
 from sklearn.ensemble import VotingClassifier 
 
 Train_X,Test_X,Train_Y,Test_Y = train_test_split(X, Y, test_size = 0.1, random_state = 13)
@@ -37,6 +38,17 @@ print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 print ('------------------------------------------')
+cb_model = cb.CatBoostClassifier(random_state = 13, verbose = False)
+cb_model.fit(Train_X, Train_Y,
+            eval_set=[(Test_X, Test_Y)],
+            verbose = False,
+            early_stopping_rounds = 1000) #  cat_features = categorical_features
+y_pred = xgb_model.predict(Test_X)
+predicted = [round(value) for value in y_pred]
+predicted = xgb_model.predict(val_X)
+print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
+print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
+print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 vo_model = VotingClassifier(estimators = [('XGB', xgb_model),('LGBM', lgb_model)],
                           voting = 'soft')
 vo_model.fit(Train_X, Train_Y)
