@@ -1,7 +1,9 @@
 from sklearn.model_selection import *
 from sklearn.metrics import *
+import matplotlib.pyplot as plt
 
 import xgboost as xgb
+from xgboost import plot_importance
 import lightgbm as lgb
 from sklearn.ensemble import VotingClassifier 
 
@@ -48,3 +50,8 @@ predicted = vo_model.predict(val_X)
 print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
+print ('---------------------------------------------------------------')
+ax = plot_importance(xgb_model, max_num_features = 15)
+fig = ax.figure
+fig.patch.set_facecolor('xkcd:white')
+plt.show()
