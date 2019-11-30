@@ -24,6 +24,7 @@ print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 print ('------------------------------------------')
+
 lgb_model = lgb.LGBMClassifier(objective='binary', boosting_type='gbdt',learning_rate = 0.15, n_estimators = 60,
                                max_bin = 225, metric='auc', num_leaves = 17,default = 'is_unbalance',
                                random_state = 13, tree_method = 'gpu_hist')
@@ -38,17 +39,19 @@ print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 print ('------------------------------------------')
+
 cb_model = cb.CatBoostClassifier(random_state = 13, verbose = False)
 cb_model.fit(Train_X, Train_Y,
             eval_set=[(Test_X, Test_Y)],
             verbose = False,
             early_stopping_rounds = 1000) #  cat_features = categorical_features
-y_pred = xgb_model.predict(Test_X)
+y_pred = cb_model.predict(Test_X)
 predicted = [round(value) for value in y_pred]
-predicted = xgb_model.predict(val_X)
+predicted = cb_model.predict(val_X)
 print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
+
 vo_model = VotingClassifier(estimators = [('XGB', xgb_model),('LGBM', lgb_model)],
                           voting = 'soft')
 vo_model.fit(Train_X, Train_Y)
@@ -63,6 +66,7 @@ print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 print ('---------------------------------------------------------------')
+
 ax = plot_importance(xgb_model, max_num_features = 15)
 fig = ax.figure
 fig.patch.set_facecolor('xkcd:white')
