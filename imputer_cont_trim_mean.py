@@ -6,5 +6,5 @@ def imputer_cont_trim_mean(data,column_name):
     except:
         print ('not_changed ->',column_name)
  ########################
- for column_name in data:
+for column_name in data:
     imputer_cont_trim_mean(data,column_name)
