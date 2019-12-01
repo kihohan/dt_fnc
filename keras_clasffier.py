@@ -13,7 +13,6 @@ from keras.utils import to_categorical
 
 X = df.drop('labels',1)
 Y = df['labels']
-Train_X,Test_X,Train_Y,Test_Y = train_test_split(X, Y, test_size = 0.2, random_state = 13)
 
 X = np.array(X,dtype = 'f')
 
