@@ -1,4 +1,4 @@
-def percnet_graph(data,column_name,label):
+def percent_graph(data,column_name,label):
     dt = data[[column_name,label]].dropna().groupby([column_name,label]).size().reset_index(name = 'cnt')
     feature_list = []
     percent_list = []
@@ -24,4 +24,4 @@ def percnet_graph(data,column_name,label):
     plt.xticks(rotation = 90)
     plt.show()
 ################################
-percnet_graph(train,'column_name','label')
+percent_graph(train,'column_name','label')
