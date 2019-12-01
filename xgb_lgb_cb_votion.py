@@ -66,7 +66,7 @@ print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
 print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 print ('---------------------------------------------------------------')
-
+# https://datascience.stackexchange.com/questions/34209/xgboost-quantifying-feature-importances
 ax = plot_importance(xgb_model, max_num_features = 15)
 fig = ax.figure
 fig.patch.set_facecolor('xkcd:white')
