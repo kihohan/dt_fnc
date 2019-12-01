@@ -4,4 +4,6 @@ def label_encoding(data,column_name):
     le = LabelEncoder()
     le.fit(items)
     le_labels = le.transform(items)
-    data[column_name] = le_labels
+    return le_labels
+#################################33
+df['column'] = label_encoding(df,'column')
