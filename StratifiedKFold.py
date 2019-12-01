@@ -3,15 +3,15 @@ from sklearn.metrics import *
 import lightgbm as lgb
 from sklearn.externals import joblib
 
-X = df_train.drop('target',1)
-Y = df_train[['target']]
+X = df_train.drop('fr_yn',1)
+Y = df_train[['fr_yn']]
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
-    kf = StratifiedKFold(n_splits = 10, shuffle = True,random_state = 13)
+    skf = StratifiedKFold(n_splits = 10, shuffle = True,random_state = 13)
     i = 1
-    for train_index,test_index in kf.split(X,Y):
-        print('{} of KFold {}'.format(i, kf.n_splits))
+    for train_index,test_index in skf.split(X,Y):
+        print('{} of KFold {}'.format(i, skf.n_splits))
         xtr,xvl = X.iloc[train_index],X.iloc[test_index]
         ytr,yvl = Y.iloc[train_index],Y.iloc[test_index]
 
