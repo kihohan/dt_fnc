@@ -40,7 +40,8 @@ print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
 print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
 print ('------------------------------------------')
 
-cb_model = cb.CatBoostClassifier(random_state = 13, verbose = False)
+cb_model = cb.CatBoostClassifier(learning_rate = 0.15,thread_count = 2,
+                                 random_state = 13, verbose = False,task_type="GPU")
 cb_model.fit(Train_X, Train_Y,
             eval_set=[(Test_X, Test_Y)],
             verbose = False,
