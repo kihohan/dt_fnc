@@ -12,7 +12,7 @@ Train_X,Test_X,Train_Y,Test_Y = train_test_split(X, Y, test_size = 0.1, random_s
 
 xgb_model = xgb.XGBClassifier(objective="binary:logistic", learning_rate = 0.15, max_depth = 5,
                              max_delta_step = 7, max_bin = 512, eval_metric = 'poisson-nloglik',
-                             random_state = 13, tree_method = 'gpu_hist')
+                             random_state = 13, tree_method = 'gpu_exact')
 xgb_model.fit(Train_X, Train_Y,
             eval_set=[(Test_X, Test_Y)],
             verbose = False,
@@ -27,7 +27,7 @@ print ('------------------------------------------')
 
 lgb_model = lgb.LGBMClassifier(objective='binary', boosting_type='gbdt',learning_rate = 0.15, n_estimators = 60,
                                max_bin = 225, metric='auc', num_leaves = 17,default = 'is_unbalance',
-                               random_state = 13, tree_method = 'gpu_hist')
+                               random_state = 13, tree_method = 'gpu_exact')
 lgb_model.fit(Train_X, Train_Y,
             eval_set=[(Test_X, Test_Y)],
             verbose = False,
