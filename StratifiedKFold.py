@@ -17,7 +17,7 @@ with warnings.catch_warnings():
 
         xgb_model = xgb.XGBClassifier(objective="binary:logistic", learning_rate = 0.15, max_depth = 5,
                                      max_delta_step = 7, max_bin = 512, eval_metric = 'poisson-nloglik',
-                                     random_state = 13, tree_method = 'gpu_exact')
+                                     random_state = 13)
         xgb_model.fit(xtr, ytr,
                     eval_set=[(xvl, yvl)],
                     verbose = False,
@@ -28,6 +28,7 @@ with warnings.catch_warnings():
         print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
         print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
         print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
-        # joblib.dump(model,f'{score}_model.pkl')
-        i += 1mp(model,f'{score}_model.pkl')
+        if f1_score(val_Y,predicted) > 0.521:
+            joblib.dump(xgb_model,f'{f1_score(val_Y,predicted)}_model.pkl')
+            print (f'---------------->save___{f1_score(val_Y,predicted)}_model')
         i += 1
