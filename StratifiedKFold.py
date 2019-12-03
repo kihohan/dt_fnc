@@ -1,6 +1,6 @@
 from sklearn.model_selection import *
 from sklearn.metrics import *
-import lightgbm as lgb
+import xgboost as xgb
 from sklearn.externals import joblib
 
 X = df_train.drop('fr_yn',1)
@@ -24,9 +24,10 @@ with warnings.catch_warnings():
                     early_stopping_rounds = 1000)
         y_pred = xgb_model.predict(Test_X)
         predicted = [round(value) for value in y_pred]
-        predicted = lgb_model.predict(val_X)
+        predicted = xgb_model.predict(val_X)
         print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
         print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
         print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
         # joblib.dump(model,f'{score}_model.pkl')
+        i += 1mp(model,f'{score}_model.pkl')
         i += 1
