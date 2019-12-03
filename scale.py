@@ -20,3 +20,6 @@ def s_scale(data,column_name):
 #########################
 for column_name in scale_list:
     mm_scale(data,column_name)
+############################################
+for column_name in continuous_list:
+    mm_scale(dt,column_name)
