@@ -15,18 +15,16 @@ with warnings.catch_warnings():
         xtr,xvl = X.iloc[train_index],X.iloc[test_index]
         ytr,yvl = Y.iloc[train_index],Y.iloc[test_index]
 
-        lgb_model = lgb.LGBMClassifier(objective='binary', boosting_type='gbdt',learning_rate = 0.15,
-                                       n_estimators = 60,
-                                       max_bin = 225, metric='auc', num_leaves = 17,default = 'is_unbalance',
-                                       random_state = 13,tree_method='gpu_exact')
-        lgb_model.fit(xtr,ytr,
-                    eval_set=[(xvl,yvl)],
+        xgb_model = xgb.XGBClassifier(objective="binary:logistic", learning_rate = 0.15, max_depth = 5,
+                                     max_delta_step = 7, max_bin = 512, eval_metric = 'poisson-nloglik',
+                                     random_state = 13, tree_method = 'gpu_exact')
+        xgb_model.fit(xtr, ytr,
+                    eval_set=[(xvl, yvl)],
                     verbose = False,
                     early_stopping_rounds = 1000)
-        y_pred = lgb_model.predict(Test_X)
+        y_pred = xgb_model.predict(Test_X)
         predicted = [round(value) for value in y_pred]
         predicted = lgb_model.predict(val_X)
-        print ('val_set - accuaracy: {0}'.format(accuracy_score(val_Y,predicted)))
         print ('val_set - precision: {0}'.format(precision_score(val_Y,predicted)))
         print ('val_set - recall: {0}'.format(recall_score(val_Y,predicted)))
         print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
