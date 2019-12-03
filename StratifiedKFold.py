@@ -30,5 +30,5 @@ with warnings.catch_warnings():
         print ('val_set - fl: {0}'.format(f1_score(val_Y,predicted)))
         if f1_score(val_Y,predicted) > 0.521:
             joblib.dump(xgb_model,f'{f1_score(val_Y,predicted)}_model.pkl')
-            print (f'---------------->save___{f1_score(val_Y,predicted)}_model')
+            print (f'---------------->save___{f1_score(val_Y,predicted)}_model.pkl')
         i += 1
