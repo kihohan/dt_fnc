@@ -6,7 +6,7 @@ def threshold_sub(model,test,threshold):
     classes[classes < threshold] = 0
     predicted = classes
     sub = pd.DataFrame({'aaaa': predicted})
-    sub['fr_yn'] = sub['fr_yn'].apply(lambda x: 'Y' if x == 1 else 'N')
+    sub['aaaaaa'] = sub['aaaaaa'].apply(lambda x: 'Y' if x == 1 else 'N')
     sub.to_csv('Submission.csv', index = False)
     print (sub['aaaaa'].value_counts())
 ###################################
