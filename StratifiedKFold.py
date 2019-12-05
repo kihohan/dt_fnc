@@ -3,8 +3,8 @@ from sklearn.metrics import *
 import xgboost as xgb
 from sklearn.externals import joblib
 
-X = df_train.drop('fr_yn',1)
-Y = df_train[['fr_yn']]
+X = df_train.drop('labels',1)
+Y = df_train[['labels']]
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
