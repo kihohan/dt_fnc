@@ -73,8 +73,8 @@ history = model.fit(
 # --- plot 
 loss = history.history['loss']
 val_loss = history.history['val_loss']
-acc = history.history['accuracy']
-val_acc = history.history['val_accuracy']
+acc = history.history['acc']
+val_acc = history.history['val_acc']
 
 epochs = range(1, len(loss) + 1)
 
