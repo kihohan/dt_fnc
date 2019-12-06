@@ -20,8 +20,7 @@ X = np.array(X,dtype = 'f')
 LE = LabelEncoder()
 LE.fit(Y)
 encoded_label = LE.transform(Y)
-Y = encoded_label
-# Y = to_categorical(encoded_label, dtype='float16')
+Y = to_categorical(encoded_label, dtype='float16')
 ################################################
 n_samples, n_features = X.shape
 n_samples, n_targets = Y.shape
