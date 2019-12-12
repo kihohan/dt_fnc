@@ -32,3 +32,5 @@ with warnings.catch_warnings():
             joblib.dump(xgb_model,f'{f1_score(val_Y,predicted)}_model.pkl')
             print (f'---------------->save___{f1_score(val_Y,predicted)}_model.pkl')
         i += 1
+########################
+model = joblib.load('model.pkl') 
