@@ -44,7 +44,7 @@ callbacks_list = [
         patience = 50, 
     ),
     keras.callbacks.ModelCheckpoint( 
-        filepath='sulwhasoo', 
+        filepath='model', 
         monitor='val_accuracy',
         save_best_only=True 
     ),
