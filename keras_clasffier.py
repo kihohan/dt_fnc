@@ -97,7 +97,7 @@ plt.legend()
 
 plt.show()
 plt.close()
-
+###############################
 def deep_sub(model,test):
     predicted = model.predict(np.array(test))
     sub = pd.DataFrame({'label': predicted.argmax(1)})
