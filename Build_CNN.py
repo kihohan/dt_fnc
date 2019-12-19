@@ -13,10 +13,12 @@ from keras.optimizers import Adam
 model = models.Sequential()
 model.add(Conv1D(32, 2, activation='relu', input_shape = X[0].shape))
 model.add(BatchNormalization())
+# model.add(MaxPool1D(2))
 model.add(Dropout(0.2))
 
 model.add(Conv1D(64, 2, activation='relu'))
 model.add(BatchNormalization())
+# model.add(MaxPool1D(2))
 model.add(Dropout(0.5))
 
 model.add(Flatten())
