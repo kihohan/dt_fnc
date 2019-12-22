@@ -1,6 +1,6 @@
 # data_function
 
-- 예측 프로젝트 함수
+## * 예측 프로젝트 함수
 
 1. train, test 셋을 합친다
 2. class 변환
