@@ -3,14 +3,14 @@ X = X.to_numpy().reshape(X.shape[0], X.shape[1], 1)
 Y = Y.to_numpy()
 ##############################
 import keras
-from keras import models
+from keras.models import Sequential
 from keras.callbacks import EarlyStopping
 from keras.layers import Dense, Dropout,Flatten,Conv1D, MaxPool1D
 from sklearn.model_selection import KFold
 from keras.layers.normalization import BatchNormalization
 from keras.optimizers import Adam
 
-model = models.Sequential()
+model = Sequential()
 model.add(Conv1D(32, 2, activation='relu', input_shape = X[0].shape))
 model.add(BatchNormalization())
 # model.add(MaxPool1D(2))
