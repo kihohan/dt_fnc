@@ -32,3 +32,15 @@ def denorm_df(norm_df, denorm_column):
     dl_series = norm_df.apply(lambda r : denorm_row(r, denorm_column), axis=1)
     denorm_df = pd.DataFrame([d for dl in dl_series for d in dl])
     return denorm_df
+
+'''
+part_filename = './epoplib_samples/colt_item_daily/colt_item_daily_top.coupang.com_20200915_0.pk'
+part = pd.read_pickle(part_filename)
+part_denorm = denorm_df(part, 'rank_his')
+
+display(
+    f'{len(part):,} --> {len(part_denorm):,}',
+    part[0:2],
+    part_denorm[part_denorm._id.isin(part[0:2]._id)]
+)
+'''
